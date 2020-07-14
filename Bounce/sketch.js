@@ -2,7 +2,6 @@ let circles = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  // createCanvas(600, 600);
   //already present circles in the canvas
   for(let i = 0; i < 500; i++) {
     circles[i] = new Circle(random(0,width), random(0,height),10,i,circles,[255]);
@@ -26,16 +25,6 @@ function draw() {
     circle.bounce();
     circle.collide();
   }
-
-  // for (let i = 0; i < circles.length; i++){
-  //   circles[i].show();
-  //   circles[i].bounce();
-  //   if (circles.length > 1) {
-  //     circles[i].collide();
-  //   }
-    
-  // }
-}
 
 
 class Circle{
@@ -92,7 +81,6 @@ class Circle{
       let xDist = a.x - b.x;
       let yDist = a.y - b.y;
       let distSquared = pow(xDist,2) + pow(yDist,2);
-      //console.log(distSquared);
       let numberOfCollision = 0;
 
       if (distSquared <= pow((a.diameter + b.diameter)/2,2)) {
@@ -100,7 +88,7 @@ class Circle{
         let yVelocity = b.yspeed - a.yspeed;
         let dotProduct = xDist * xVelocity + yDist * yVelocity;
 
-      //if object moves towars one another
+      //if object moves towards one another
         if (dotProduct > 0){
           let collisionScale = dotProduct / distSquared;
           let xCollision = xDist * collisionScale;
@@ -115,6 +103,8 @@ class Circle{
           b.xspeed -= collisionWeight_b * xCollision;
           b.yspeed -= collisionWeight_b * yCollision;
         }
+        
+        
       }
     }
   }
